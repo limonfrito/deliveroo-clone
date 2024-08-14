@@ -1,24 +1,18 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View, StyleSheet, SafeAreaView } from "react-native";
+import { Text, View, SafeAreaView, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 
 const Stack = createNativeStackNavigator();
-const altura = StatusBar.currentHeight;
 
 export default function App() {
   return (
-    <NavigationContainer style={styles.nav}>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaView style={{flex: 1, paddingTop: StatusBar.currentHeight}}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  nav:{
-    paddingTop: altura
-  }
-});
